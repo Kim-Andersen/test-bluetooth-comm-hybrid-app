@@ -33,16 +33,46 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
+.controller('DiscoverCtrl', ['$scope', 'BLE', '$ionicLoading', 
+  function($scope, BLE, $ionicLoading) {
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+    $scope.refresh = function(){
+      $scope.scanning = true;
+      $scope.devices = [];
+
+      var onComplete = function(devices){
+        },
+        onNotify = function(device){
+          $scope.devices.push(device);
+        },
+        onError = function(reason){
+          console.log('onError', reason);
+        };
+
+      BLE.scan({seconds: 20}).then(onComplete, onError, onNotify)
+        .finally(function(){
+          $scope.scanning = false;
+        });
+    };
+}])
+
+.controller('UnpairedDeviceDetailsCtrl', ['$scope', '$stateParams', 'BLE', 
+  function($scope, $stateParams, BLE) {
+
+    $scope.device = BLE.getDeviceById($stateParams['id']);
+    console.log('device', JSON.stringify($scope.device));
+
+    $scope.connect = function(){
+      var onSuccess = function(param1, param2){
+          console.log('connect success', JSON.stringify(param1), JSON.stringify(param2));
+        },
+        onError = function(error){
+
+          console.log('connect failed', JSON.stringify(error));
+        };
+
+      BLE.connect($scope.device.id)
+        .then(onSuccess, onError);
+    };
+}])
+

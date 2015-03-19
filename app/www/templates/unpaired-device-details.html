@@ -1,0 +1,32 @@
+<ion-view view-title="{{ device.name }}">
+  <ion-content>
+    
+    <div class="list card" ng-show="device">
+		  
+		  <div class="item">
+		    <h2>{{ device.name || device.id }}</h2>
+		  </div>
+
+		  <div class="item item-body">
+		  	<p>Id: {{ device.id }}</p>
+		    <p>Name: {{ device.name }}</p>
+		    <p>RSSI: {{ device.rssi }}</p>
+		    <p>Address: {{ device.address }}</p>
+		    <p>Class: {{ device.class }}</p>
+		  </div>
+
+		  <div class="item tabs tabs-secondary tabs-icon-left">
+		    <a class="tab-item" ng-click="connect()">
+		      <i class="icon ion-bluetooth"></i>
+		      Connect
+		    </a>
+		    <a class="tab-item" href="#">
+		      <i class="icon ion-minus-circled"></i>
+		      Disconnect
+		    </a>
+		  </div>
+
+		</div>
+
+  </ion-content>
+</ion-view>
