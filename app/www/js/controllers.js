@@ -33,6 +33,20 @@ angular.module('starter.controllers', [])
   };
 })
 
+/*.controller('ListCtrl', ['$scope', 'BLE', 
+  function ($scope, BLE) {
+    $scope.devices = BLE.connected;
+
+    $scope.refresh = function(){
+      $scope.refreshing = true;
+
+      BLE.loadConnected()
+        .finally(function(){
+          $scope.refreshing = false;
+        });
+    };    
+}])*/
+
 .controller('DiscoverCtrl', ['$scope', 'BLE', '$ionicLoading', 
   function($scope, BLE, $ionicLoading) {
 
@@ -49,11 +63,13 @@ angular.module('starter.controllers', [])
           console.log('onError', reason);
         };
 
-      BLE.scan({seconds: 20}).then(onComplete, onError, onNotify)
+      BLE.scan({seconds: 10}).then(onComplete, onError, onNotify)
         .finally(function(){
           $scope.scanning = false;
         });
     };
+
+    $scope.refresh();
 }])
 
 .controller('UnpairedDeviceDetailsCtrl', ['$scope', '$stateParams', 'BLE', 

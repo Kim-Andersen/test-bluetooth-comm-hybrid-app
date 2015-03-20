@@ -1,0 +1,15 @@
+{
+	"name":"Apple TV",
+	"id":"1883313E-5829-C0BF-E460-E6677FE5768C",
+	"advertising":{"kCBAdvDataIsConnectable":true},
+	"services":["D0611E78-BBB4-4591-A5F8-487910AE4366"],
+	"characteristics":[
+		{
+			"service":"D0611E78-BBB4-4591-A5F8-487910AE4366",
+			"isNotifying":false,
+			"characteristic":"8667556C-9A37-4C91-84ED-54EE27D90049",
+			"properties":["Write","Notify","ExtendedProperties"]
+		}
+	],
+	"rssi":-83
+}
