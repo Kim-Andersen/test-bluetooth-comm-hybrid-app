@@ -4,11 +4,11 @@ Hybrid mobile app for testing Bluetooth device communication.
 
 ##### Run the application in your browser
 In the terminal:  
-cd app
-ionic serve
+cd app  
+ionic serve  
 
 ##### Build for iOS or Android
-In the terminal:
+In the terminal:  
 cd app  
-ionic build ios|android
-ionic run ios
+ionic build ios|android  
+ionic run ios  
